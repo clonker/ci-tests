@@ -16,15 +16,9 @@ function set_this_up {
         exit 0
     fi
 
-    if [ "$BUILD_LEADER" != "YES" ]
+    if [ "$CONDA_PY" != "27" ]
     then
-        echo "Was not build leader, exit."
-        exit 0
-    fi
-
-    if [ "$BUILD_AGGREGATE_STATUS" = "others_failed" ]
-    then
-        echo "Other builds failed, do not execute make docs."
+        echo "Only build documentation for python version 2.7. Exit."
         exit 0
     fi
 
@@ -36,4 +30,5 @@ function set_this_up {
 }
 
 echo "start!"
+printenv
 set_this_up

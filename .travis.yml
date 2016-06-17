@@ -9,21 +9,14 @@ env:
   - secure: "VfcHAyQNIT4ydBFJDN3GeJ6xoukYhfa5vLnj2ILMYJgJCGjngz+bRO5Ld5rgye52H6cM4ijsy6az5DApiQur/JTUdlxkzP8n2eGiWEl43js/JwAT8oFA3rsvrVUAG5gU6U+9c1peF9SHX9RMPbziNAK5+ihM4Yi8KT2Z84zk26+ANzTISu24/1mEfHc1VcKIisxYVQadYfHkwbi4qDnTsVb1Qhs8Qrn29AYhJE/LprfDGFuXs902fDkOlS1rEum+/2Xs+FkQejUFFDTnRiywsPaKk7GNQXKN5D+g/z8y8V/qWByzBMo9UcU1wwOGaRAKCVOf1BIxS998tabf3HMw89RyPJR/RbQufOytXzqcBmkkJv8GPH8T6TopgqU6TXjZzK2eQFk9+awIQ3IredxD0gsnmdzU2nX4PsHLIA9oWBrjgoY7J6QKF2U/PUREVHpefr0RJ+UKyp10VTPTKRVUzKpDy2URzsjUGoqgH0eEdeO1c17/yYMKe5mQW+Us1SYppq3g+NpleTl8qx62borVGYj1haCZH/wup7hDmmciEz34bNADdf/Wpk8i0Ft4RWyOBryz2SibFIdzIQmoDypiOraHRAghtwpUd+HwapAsTaDgnwMdruxF2ujTwp64bznXW0KXOpab39L8fnJLA61SBtd6d8fnIDEkiRoOsmCDUgw="
 
   matrix:
-  - python=2.7
-  - python=3.4
+  - python=2.7 CONDA_PY=27
+  - python=3.5 CONDY_PY=35
 
 script:
 - echo "script!"
-- curl -Lo travis_after_all.py https://raw.github.com/dmakhno/travis_after_all/master/travis_after_all.py
 
 after_success:
-- python travis_after_all.py https://api.travis-ci.com
-- cat .to_export_back
-- export $(cat .to_export_back)
 - bash make_docs.sh
-
-after_script:
-- echo leader=$BUILD_LEADER status=$BUILD_AGGREGATE_STATUS
 
 notifications:
   email: false
