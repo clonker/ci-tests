@@ -18,8 +18,12 @@ script:
 
 after_success:
 - python travis_after_all.py https://api.travis-ci.com
+- cat .to_export_back
 - export $(cat .to_export_back)
 - bash make_docs.sh
+
+after_script:
+- echo leader=$BUILD_LEADER status=$BUILD_AGGREGATE_STATUS
 
 notifications:
   email: false
