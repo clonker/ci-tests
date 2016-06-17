@@ -29,4 +29,5 @@ function set_this_up {
     fi
 }
 
+echo "start!"
 set_this_up
