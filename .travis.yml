@@ -20,16 +20,6 @@ after_success:
 - python travis_after_all.py https://api.travis-ci.com
 - export $(cat .to_export_back)
 - bash make_docs.sh
-- |
-    if [ "$BUILD_LEADER" = "YES" ]
-    then
-      if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]
-      then
-        make_docs.sh
-      else
-        echo "some jobs failed, not publishing documentation"
-      fi
-    fi
 
 notifications:
   email: false

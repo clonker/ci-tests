@@ -12,8 +12,20 @@ function set_this_up {
 
     if [ "$TRAVIS_BRANCH" != "master" ]
     then
-      echo "This commit was made against the $TRAVIS_BRANCH branch and not the master branch. Exit."
-      exit 0
+        echo "This commit was made against the $TRAVIS_BRANCH branch and not the master branch. Exit."
+        exit 0
+    fi
+
+    if [ "$BUILD_LEADER" != "YES" ]
+    then
+        echo "Was not build leader, exit."
+        exit 0
+    fi
+
+    if [ "$BUILD_AGGREGATE_STATUS" = "others_failed" ]
+    then
+        echo "Other builds failed, do not execute make docs."
+        exit 0
     fi
 
     if [ -z ${GH_TOKEN+x} ]
