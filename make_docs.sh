@@ -10,12 +10,6 @@ function set_this_up {
         exit 0
     fi
 
-    if [ "$TRAVIS_JOB_NUMBER" != "1" ]
-    then
-        echo "Was not job number 1!"
-        exit 0
-    fi
-
     if [ "$TRAVIS_BRANCH" != "master" ]
     then
       echo "This commit was made against the $TRAVIS_BRANCH branch and not the master branch. Exit."
